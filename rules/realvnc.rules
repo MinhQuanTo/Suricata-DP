@@ -1,0 +1,22 @@
+# =============================================
+# REALVNC RULES - VERZE PRO DIPLOMOVOU PRÁCI (2026)
+# Blokování a detekce RealVNC (Direct + Cloud)
+# =============================================
+
+# ==================== REALVNC DIRECT CONNECTION ====================
+
+# --- DETEKČNÍ PRAVIDLA (pouze alert pro analýzu) ---
+alert tcp any any -> any 5900 (msg:"[DETECT RealVNC] Přímé připojení - TCP/5900"; flow:to_server; sid:4000010; rev:2;)
+alert udp any any -> any 5900 (msg:"[DETECT RealVNC] Přímé připojení - UDP/5900"; sid:4000011; rev:2;)
+
+# --- BLOKOVACÍ PRAVIDLA (drop) ---
+drop tcp any any -> any 5900 (msg:"[RealVNC BLOCK] Přímé připojení - TCP/5900"; flow:to_server; sid:1000010; rev:3;)
+drop udp any any -> any 5900 (msg:"[RealVNC BLOCK] Přímé připojení - UDP/5900"; sid:1000011; rev:3;)
+
+# ==================== REALVNC CLOUD ====================
+
+# --- DETEKČNÍ PRAVIDLA (pouze alert) ---
+alert ip any any -> [212.119.29.128/28,165.254.239.128/28,165.254.191.192/28] any (msg:"[DETECT RealVNC] Rozsah IP - connectivity services"; sid:3000008; rev:2;)
+
+# --- BLOKOVACÍ PRAVIDLA (drop) ---
+drop ip any any -> [212.119.29.128/28,165.254.239.128/28,165.254.191.192/28] any (msg:"[RealVNC BLOCK] Cloud - rozsah IP connectivity services"; sid:1000008; rev:8;)

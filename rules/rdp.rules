@@ -1,0 +1,5 @@
+# Phát hiện kết nối RDP thông thường qua cổng TCP 3389
+alert tcp any any -> any 3389 (msg:"[DP-QUAN] RDP Connection Attempt Detected (TCP)"; sid:2000001; rev:1;)
+
+# Chặn hoàn toàn kết nối RDP qua cổng TCP 3389
+drop tcp any any -> any 3389 (msg:"[DP-QUAN] RDP Connection Blocked (TCP)"; sid:2000004; rev:1;)
