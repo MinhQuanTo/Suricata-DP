@@ -2272,8 +2272,8 @@ napatech:
 default-rule-path: C:\\Program Files\\Suricata\\rules\\
 
 rule-files:
- #- realvnc.rules
- #- rdp.rules
+ - realvnc.rules
+ - rdp.rules
  - teamviewer.rules
  #- botcc.rules
  #- botcc.portgrouped.rules
