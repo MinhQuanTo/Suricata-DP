@@ -1,4 +1,4 @@
-# Nhận diện qua Port mặc định
+# Identifikace přes výchozí port
 alert tcp any any -> any 5938 (msg:"[DP-QUAN] TeamViewer Connection Detected (TCP 5938)"; sid:3000001; rev:1;)
 
 # BLOCK TEAMVIEWER
